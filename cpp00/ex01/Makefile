@@ -1,11 +1,11 @@
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 CPP = c++
 
-SRC = megaphone.cpp
+SRC = phonebook.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-NAME = megaphone
+NAME = phonebook
 
 all : $(NAME)
 
