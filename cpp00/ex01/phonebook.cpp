@@ -99,7 +99,33 @@ public:
         std::cout << "Darkest Secret: " << contacts[index].get_darkest() << "\n\n";
     }
 };
-
+int are_print(std::string str)
+{
+	for (int i = 0; i < str.length(); i++)
+	{
+		if (str[i] < 32 || str[i] > 126)
+			return (0);
+	}
+	return (1);
+}
+int are_digits(std::string str)
+{
+	for (int i = 0; i < str.length(); i++)
+	{
+		if (!std::isdigit(str[i]))
+			return (0);
+	}
+	return (1);
+}
+int are_alpha(std::string str)
+{
+	for (int i = 0; i < str.length(); i++)
+	{
+		if (!std::isalpha(str[i]))
+			return (0);
+	}
+	return (1);
+}
 int main(int ac, char **av)
 {
     if (ac > 1)
@@ -116,28 +142,62 @@ int main(int ac, char **av)
 	{
         std::cout << "Enter command (ADD, SEARCH, EXIT): " << std::endl;
 
-        if (!(std::cin >> s))
+        if (!(std::getline(std::cin, s)))
 		{
             std::cout << "\nEOF detected\n";
             break;
         }
+		if (!are_print(s))
+		{
+			std::cout << "Error: Field cannot be non-printable\n";
+			continue ;
+		}
         if (s == "ADD")
 		{
             std::cout << "Enter first name:\n";
-            if (!(std::cin >> first_name))
+            if (!(std::getline(std::cin, first_name)))
 				break;
+			if (!are_print(first_name))
+			{
+				std::cout << "Error: Field cannot be non-printable\n";
+				continue;
+			}
+
             std::cout << "Enter last name:\n";
-            if (!(std::cin >> last_name))
-				break;
+            if (!(std::getline(std::cin, last_name)))
+				continue;
+			if (!are_print(last_name))
+			{
+				std::cout << "Error: Field cannot be non-printable\n";
+				continue;
+			}
+
             std::cout << "Enter nickname:\n";
-            if (!(std::cin >> nickname))
+            if (!(std::getline(std::cin, nickname)))
 				break;
+			if (!are_print(nickname))
+			{
+				std::cout << "Error: Field cannot be non-printable\n";
+				continue;
+			}
+
             std::cout << "Enter phone number:\n";
-            if (!(std::cin >> phone_number))
+            if (!(std::getline(std::cin, phone_number)))
 				break;
+			if (!are_print(phone_number) || !are_digits(phone_number) || phone_number.length() > 12)
+			{
+				std::cout << "Error: Field cannot be non-printable or non-digit\n";
+				continue;
+			}
+
             std::cout << "Enter darkest secret:\n";
-            if (!(std::cin >> darkest_secret))
+            if (!(std::getline(std::cin, darkest_secret)))
 				break;
+			if (!are_print(darkest_secret))
+			{
+				std::cout << "Error: Fields cannot be non-printable\n";
+				continue;
+			}
 
             if (first_name.empty() || last_name.empty() || nickname.empty() ||
                 phone_number.empty() || darkest_secret.empty())
@@ -145,6 +205,7 @@ int main(int ac, char **av)
                 std::cout << "Error: Fields cannot be empty.\n";
                 continue;
             }
+			
             p.add_contact(first_name, last_name, nickname, phone_number, darkest_secret);
         }
         else if (s == "SEARCH")
@@ -152,7 +213,7 @@ int main(int ac, char **av)
             p.display_summary();
             std::cout << "Enter the index of the contact to view:\n";
             std::string index_str;
-            if (!(std::cin >> index_str)) {
+            if (!(std::getline(std::cin, index_str))) {
                 std::cout << "\nEOF detected\n";
                 break;
             }
