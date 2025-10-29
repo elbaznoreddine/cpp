@@ -1,14 +1,14 @@
 #include <iostream>
 
-class PhoneBook
-{
-    private:
-        Contact contact[8];
-    public:
-        void 
-};
+// class PhoneBook
+// {
+//     private:
+//         Contact contact[8];
+//     public:
+//         void 
+// };
 
-class Contact
+class PhoneBook
 {
     private:
         std::string first_name, last_name;
@@ -25,6 +25,11 @@ class Contact
 };
 int main()
 {
-    PhoneBook p = PhoneBook("EL BAZ", "Noreddine");
+    std::string line;
+    std::getline(std::cin, line);
+    std::string line2;
+    std::getline(std::cin, line2);
+    PhoneBook p = PhoneBook(line, line2);
     p.print_class();
+    
 }

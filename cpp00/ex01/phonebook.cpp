@@ -16,25 +16,26 @@ class Contact
 			darkest_secret = d;
 		}
 		std::string	get_fname()
-		{
-			return first_name;
-		}
+			{return first_name;}
 		std::string	get_lname()
-		{
-			return last_name;
-		}
+			{return last_name;}
 		std::string	get_nname()
-		{
-			return nickname;
-		}
+			{return nickname;}
 		std::string	get_phone()
-		{
-			return phone_number;
-		}
+			{return phone_number;}
 		std::string	get_darkest()
-		{
-			return darkest_secret;
-		}
+			{return darkest_secret;}
+        
+        void set_fname(std::string new_fname)
+			{first_name = new_fname;}
+		void set_lname(std::string new_lname)
+			{last_name = new_lname;}
+		void set_nname(std::string new_nname)
+			{nickname = new_nname;}
+		void set_phone(std::string new_phone)
+			{phone_number = new_phone;}
+		void set_darkest(std::string new_darkest)
+			{darkest_secret = new_darkest;}
 };
 class PhoneBook {
 private:
@@ -44,6 +45,7 @@ private:
 
     std::string truncate(std::string str)
 	{
+        return str;
         if (str.length() > 10)
             return str.substr(0, 9) + ".";
         return str;
@@ -52,8 +54,14 @@ private:
 public:
     PhoneBook() : i(0), total_contacts(0) {}
 
-    void add_contact(const Contact &c) {
-        contacts[i] = c;
+    void add_contact(std::string fname, std::string lname, std::string nname, std::string phone, std::string darkest)
+    {
+        
+        contacts[i].set_fname(fname);
+        contacts[i].set_lname(lname);
+        contacts[i].set_nname(nname);
+        contacts[i].set_phone(phone);
+        contacts[i].set_darkest(darkest);
         i = (i + 1) % 8;
         if (total_contacts < 8)
             total_contacts++;
@@ -137,7 +145,7 @@ int main(int ac, char **av)
                 std::cout << "Error: Fields cannot be empty.\n";
                 continue;
             }
-            p.add_contact(Contact(first_name, last_name, nickname, phone_number, darkest_secret));
+            p.add_contact(first_name, last_name, nickname, phone_number, darkest_secret);
         }
         else if (s == "SEARCH")
 		{

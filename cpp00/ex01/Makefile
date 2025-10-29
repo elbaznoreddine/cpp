@@ -13,7 +13,7 @@ $(NAME): $(OBJ)
 	$(CPP) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
 %.o:%.cpp
-	$(CPP) $(CPPFLAGS) -c $< -o $@
+	$(CPP) $(CPFLAGS) -c $< -o $@
 
 clean:
 	rm -rf $(OBJ)
