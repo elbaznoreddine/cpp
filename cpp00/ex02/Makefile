@@ -1,18 +1,18 @@
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 CPP = c++
 
-SRC = phonebook.cpp contact.cpp main.cpp
+SRC = account.cpp tests.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-NAME = phonebook
+NAME = account
 
 all : $(NAME)
 
 $(NAME): $(OBJ)
 	$(CPP) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
-%.o:%.cpp phonebook.hpp Contact.hpp
+%.o:%.cpp Account.hpp
 	$(CPP) $(CPPFLAGS) -c $< -o $@
 
 clean:
