@@ -1,7 +1,4 @@
 #include "Account.hpp"
-#include <iostream>
-#include <iomanip>
-#include <ctime>
 
 int Account::_nbAccounts = 0;
 int Account::_totalNbDeposits = 0;
