@@ -98,7 +98,7 @@ int main()
 			std::string index_str = get_numeric_input("Enter the index of the contact to view:\n");
 			
 			if (index_str.empty())
-				continue;
+				break;
 			if (index_str.length() != 1)
 			{
 				std::cout << "Invalid index.\n";
