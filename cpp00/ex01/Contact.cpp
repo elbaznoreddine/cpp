@@ -1,6 +1,5 @@
 #include "Contact.hpp"
 
-
 Contact::Contact(void){};
 
 Contact::Contact(std::string f, std::string l, std::string n, std::string p, std::string d)
