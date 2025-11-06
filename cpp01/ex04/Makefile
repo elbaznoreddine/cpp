@@ -1,11 +1,11 @@
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 CPP = c++
 
 SRC = main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-NAME = string
+NAME = sed
 
 all : $(NAME)
 

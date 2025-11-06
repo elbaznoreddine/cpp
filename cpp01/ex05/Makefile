@@ -1,18 +1,18 @@
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 CPP = c++
 
-SRC = main.cpp
+SRC = Harl.cpp main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-NAME = string
+NAME = sed
 
 all : $(NAME)
 
 $(NAME): $(OBJ)
 	$(CPP) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
-%.o:%.cpp
+%.o:%.cpp Harl.hpp
 	$(CPP) $(CPPFLAGS) -c $< -o $@
 
 clean:

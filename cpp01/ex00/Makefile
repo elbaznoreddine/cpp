@@ -12,7 +12,7 @@ all : $(NAME)
 $(NAME): $(OBJ)
 	$(CPP) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
-%.o:%.cpp
+%.o:%.cpp Zombie.hpp
 	$(CPP) $(CPPFLAGS) -c $< -o $@
 
 clean:
