@@ -5,7 +5,7 @@ SRC = Harl.cpp main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-NAME = sed
+NAME = harlFilter
 
 all : $(NAME)
 
