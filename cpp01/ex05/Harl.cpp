@@ -28,24 +28,11 @@ void Harl::complain(std::string level)
     while (i < 4)
     {
         if (level == arr[i])
-            break ;
+        {
+            (this->*ptr[i])();
+            return ;
+        }
         i++;
     }
-    switch (i)
-    {
-        case 0:
-            (this->*ptr[0])();
-            break ;
-        case 1:
-            (this->*ptr[1])();
-            break ;
-        case 2:
-            (this->*ptr[2])();
-            break ;
-        case 3:
-            (this->*ptr[3])();
-            break ;
-        default :
-            std::cout << "invalid level" << std::endl;
-    }
+    std::cout << "invalid level" << std::endl;
 }

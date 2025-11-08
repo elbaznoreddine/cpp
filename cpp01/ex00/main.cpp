@@ -5,8 +5,6 @@ int main()
 	Zombie z = Zombie("foo");
 	Zombie z1 = Zombie("Bar");
 	Zombie *z2 = newZombie("test1");
-	if (!z2)
-		return (1);
 	z.announce();
 	z1.announce();
 	z2->announce();
