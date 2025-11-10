@@ -2,8 +2,8 @@
 
 int main()
 {
-	Zombie z = Zombie("foo");
-	Zombie z1 = Zombie("Bar");
+	Zombie z("foo");
+	Zombie z1("Bar");
 	Zombie *z2 = newZombie("test1");
 	z.announce();
 	z1.announce();

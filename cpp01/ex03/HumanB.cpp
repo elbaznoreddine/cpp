@@ -1,5 +1,7 @@
 #include "HumanB.hpp"
 
+HumanB::HumanB(void){}
+
 HumanB::HumanB(std::string n)
 {
     name = n;

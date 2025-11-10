@@ -20,7 +20,8 @@ int main (int ac, char **av)
     while (getline(ifile, str))
     {
         all.append(str);
-        all.append("\n");
+        if (!ifile.eof())
+            all.append("\n");
     }
     ifile.close();
     std::string s = std::string(av[1]) + ".replace";
@@ -33,6 +34,7 @@ int main (int ac, char **av)
     if (s1.empty())
     {
         ofile << all;
+        ofile.close();
         return (0);
     }
     int pos = 0;
@@ -48,5 +50,5 @@ int main (int ac, char **av)
     new_str.append(all.substr(pos, all.length()));
     ofile << new_str;
     ofile.close();
-
+    return (0);
 }

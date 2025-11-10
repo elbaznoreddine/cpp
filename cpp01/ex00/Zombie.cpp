@@ -5,7 +5,9 @@ Zombie::Zombie(std::string n)
 	name = n;
 }
 
-void Zombie::announce()
+Zombie::Zombie(void){}
+
+void Zombie::announce(void)
 {
 	std::cout << name << ": " << "BraiiiiiiinnnzzzZ..." << std::endl;
 }

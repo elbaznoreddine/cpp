@@ -1,5 +1,7 @@
 #include "Harl.hpp"
 
+Harl::Harl(void){}
+
 void Harl::debug(void)
 {
     std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-specialketchup burger. I really do!"
@@ -20,19 +22,15 @@ void Harl::error(void)
     std::cout << "This is unacceptable! I want to speak to the manager now."
                 << std::endl;
 }
-void Harl::complain(std::string level)
+void Harl::invalid(void)
 {
-    void (Harl::*ptr[4])(void) = {&Harl::debug, &Harl::info ,&Harl::warning, &Harl::error};
-    std::string arr[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-    int i = 0;
-    while (i < 4)
-    {
-        if (level == arr[i])
-        {
-            (this->*ptr[i])();
-            return ;
-        }
-        i++;
-    }
     std::cout << "invalid level" << std::endl;
 }
+void Harl::complain(std::string level)
+{
+    void (Harl::*ptr[])(void) = {&Harl::invalid, &Harl::debug, &Harl::info ,&Harl::warning, &Harl::error};
+    int i = (("DEBUG" == level) * 1 +  ("INFO"== level) * 2 + ("WARNING"== level) * 3 + ("ERROR"== level) * 4);
+    (this->*ptr[i])();
+}
+
+Harl::~Harl(void){}

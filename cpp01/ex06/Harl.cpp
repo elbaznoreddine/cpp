@@ -1,5 +1,7 @@
 #include "Harl.hpp"
 
+Harl::Harl(void){}
+
 void Harl::debug(void)
 {
     std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-specialketchup burger. I really do!"
@@ -48,8 +50,9 @@ void Harl::complain(std::string level)
         case 3:
             std::cout << "[ ERROR ]" << std::endl;
             (this->*ptr[3])();
-            // fall through
+            break ;
         default :
             std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
     }
 }
+Harl::~Harl(void){}
