@@ -2,13 +2,13 @@
 
 Point::Point(void){}
 
-Point::Point(const float x, const float y):x(Fixed(x)), y(Fixed(y)){}
+Point::Point(const float x, const float y) : x(Fixed(x)), y(Fixed(y)){}
 
 Point::Point(const Point& p) : x(p.x), y(p.y){}
 
 Point& Point::operator=(const Point& p)
 {
-	*this = p;
+	(void)p;
 	return(*this);
 }
 
