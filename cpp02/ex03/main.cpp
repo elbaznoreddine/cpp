@@ -1,15 +1,14 @@
-#include <iostream>
 #include "Point.hpp"
 
 int main( void )
 {
-	Point a(0, 10);
-	Point b(0, 0);
-	Point c(5, 0);
+	Point a(0, 0);
+	Point b(4, 0);
+	Point c(0, 10);
 	Point d;
-	Point p(1.25f, 8);
+	Point p(0.19f, 7.005f);
 	d = p;
-	std::cout << "P("<< p.get_X()<<", " << p.get_Y() << ")"<< bsp(a, b, c, p) << std::endl;
+	std::cout << " the point : "<< bsp(a, b, c, p) << std::endl;
 
 	return 0;
 }
