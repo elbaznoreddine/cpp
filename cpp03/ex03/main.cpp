@@ -9,11 +9,12 @@ int main()
 	ScavTrap s("nor");
 	FragTrap f("avatar");
 	DiamondTrap d("ziko");
+	DiamondTrap dd(d);
 
-	d.attack("CHEL7");
-	d.takeDamage(10);
-	d.beRepaired(20);
-	d.whoAmI();
+	dd.attack("abdo");
+	dd.takeDamage(10);
+	dd.beRepaired(20);
+	dd.whoAmI();
 
 
 

@@ -4,17 +4,16 @@ FragTrap::FragTrap() : ClapTrap()
 {
     std::cout << "FragTrap default constructor called" << std::endl;
     this->hit_points = 100;
-    this->energy_points = 50;
-    this->attack_damage = 20;
+    this->energy_points = 100;
+    this->attack_damage = 30;
 }
 
 FragTrap::FragTrap(std::string n) : ClapTrap(n)
 {
     std::cout << "FragTrap constructor called" << std::endl;
-    this->name = n;
     this->hit_points = 100;
-    this->energy_points = 50;
-    this->attack_damage = 20;
+    this->energy_points = 100;
+    this->attack_damage = 30;
 }
 
 FragTrap::FragTrap(FragTrap& s) : ClapTrap(s)
@@ -34,12 +33,15 @@ FragTrap& FragTrap::operator=(FragTrap& s)
 
 void FragTrap::takeDamage(unsigned int amount)
 {
-	if (hit_points == 0 || energy_points == 0 || hit_points < amount)
+	if (hit_points == 0 || energy_points == 0)
 	{
 		std::cout << "FragTrap can't do anything" << std::endl;
 		return;
 	}
-	hit_points -= amount;
+	if (hit_points < amount)
+		hit_points = 0;
+	else
+		hit_points -= amount;
 	std::cout << "damage taking = " << amount << std::endl;
 }
 
