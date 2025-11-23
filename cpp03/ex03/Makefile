@@ -1,4 +1,4 @@
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98  -g
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 CPP = c++
 
 SRC = ClapTrap.cpp main.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
