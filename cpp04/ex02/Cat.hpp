@@ -12,7 +12,7 @@ class Cat : public Animal
 		Cat(std::string t);
 		Cat(Cat &c);
 		Cat &operator=(Cat &c);
-		virtual ~Cat();
-		virtual void  makeSound() const;
+		~Cat();
+		void  makeSound() const;
 		Brain* getBrain() const;
 };

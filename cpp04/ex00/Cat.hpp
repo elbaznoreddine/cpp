@@ -7,8 +7,8 @@ class Cat : public Animal
 	public :
 		Cat();
 		Cat(std::string t);
-		Cat(Cat &a);
-		Cat &operator=(Cat &a);
+		Cat(Cat &c);
+		Cat &operator=(Cat &c);
 		~Cat();
 		void  makeSound() const;
 };

@@ -11,15 +11,15 @@ Cat::Cat(std::string t) : Animal(t)
 	this->type = t;
 }
 
-Cat::Cat(Cat &a) : Animal (a)
+Cat::Cat(Cat &c) : Animal (c)
 {
 }
 
-Cat &Cat::operator=(Cat &a)
+Cat &Cat::operator=(Cat &c)
 {
-	if (this != &a)
+	if (this != &c)
 	{
-		Animal::operator=(a);
+		Animal::operator=(c);
 	}
 	return (*this);
 }

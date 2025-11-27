@@ -11,15 +11,15 @@ WrongCat::WrongCat(std::string t) : WrongAnimal(t)
 	this->type = t;
 }
 
-WrongCat::WrongCat(WrongCat &a) : WrongAnimal (a)
+WrongCat::WrongCat(WrongCat &c) : WrongAnimal (c)
 {
 }
 
-WrongCat &WrongCat::operator=(WrongCat &a)
+WrongCat &WrongCat::operator=(WrongCat &c)
 {
-	if (this != &a)
+	if (this != &c)
 	{
-		WrongAnimal::operator=(a);
+		WrongAnimal::operator=(c);
 	}
 	return (*this);
 }

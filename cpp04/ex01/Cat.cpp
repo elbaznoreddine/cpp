@@ -16,8 +16,8 @@ Cat::Cat(std::string t) : Animal(t)
 Cat::Cat(Cat &c) : Animal (c)
 {
 	std::cout << "Cat Copy Constructor called" <<std::endl;
-	this->brain = new Brain(); 
-    *(this->brain) = *(c.brain);
+	this->brain = NULL;
+	*this = c;
 }
 
 Cat &Cat::operator=(Cat &c)
@@ -25,7 +25,8 @@ Cat &Cat::operator=(Cat &c)
 	if (this != &c)
 	{
 		Animal::operator=(c);
-		*(this->brain) = *(c.brain);
+		delete brain;
+		brain = new Brain(*c.brain);
 	}
 	return (*this);
 }

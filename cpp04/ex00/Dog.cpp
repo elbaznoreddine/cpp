@@ -11,15 +11,15 @@ Dog::Dog(std::string t) : Animal(t)
 	this->type = t;
 }
 
-Dog::Dog(Dog &a) : Animal (a)
+Dog::Dog(Dog &d) : Animal (d)
 {
 }
 
-Dog &Dog::operator=(Dog &a)
+Dog &Dog::operator=(Dog &d)
 {
-	if (this != &a)
+	if (this != &d)
 	{
-		Animal::operator=(a);
+		Animal::operator=(d);
 	}
 	return (*this);
 }

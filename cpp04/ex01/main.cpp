@@ -24,5 +24,20 @@ int main()
         delete animals[i];
     }
 
+    Cat c;
+    Cat c1(c);
+    c = c1;
+    Cat c10 = c;
+    Cat c2(c1);
+    c.makeSound();
+    c1.makeSound();
+
+    Dog d;
+    Dog d1(d);
+    d = d1;
+    Dog d10 = d;
+    Dog d2(d1);
+    d.makeSound();
+    d1.makeSound();
     return 0;
 }

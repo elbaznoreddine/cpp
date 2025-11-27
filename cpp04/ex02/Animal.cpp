@@ -3,6 +3,7 @@
 Animal::Animal()
 {
 	std::cout << "Animal default constractor called" << std::endl;
+	type = "default type";
 }
 
 Animal::Animal(std::string t)

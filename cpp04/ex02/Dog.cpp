@@ -16,16 +16,17 @@ Dog::Dog(std::string t) : Animal(t)
 Dog::Dog(Dog &d) : Animal (d)
 {
 	std::cout << "Dog Copy Constructor called" << std::endl;
-    this->brain = new Brain();
-    *(this->brain) = *(d.brain);
+	brain = NULL;
+    *this = d;
 }
 
 Dog &Dog::operator=(Dog &d)
 {
 	if (this != &d)
 	{
-		*(this->brain) = *(d.brain);
 		Animal::operator=(d);
+		delete brain;
+		brain = new Brain(*d.brain);
 	}
 	return (*this);
 }
