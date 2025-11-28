@@ -8,21 +8,26 @@ AMateria::AMateria(std::string const &type)
     this->type = type;
 }
 
-AMateria::AMateria(const AMateria& am)
+AMateria::AMateria(const AMateria& am) : type(am.type)
 {
-    *this = am;
 }
 
 AMateria &AMateria::operator=(const AMateria& am)
 {
-    if (this != &am)
-    {
-        this->type = am.type;
-    }
+    // if (this != &am)
+    // {
+    //     this->type = am.type;
+    // }
+	(void)am;
     return (*this);
 }
 std::string const& AMateria::getType() const
 {
     return (type);
 }
-AMateria::~AMateria(){}
+void AMateria::use(ICharacter& target)
+{
+	std::cout << "* AMateria uses its power on " << target.getName() << " *" << std::endl;
+}
+AMateria::~AMateria()
+{}
