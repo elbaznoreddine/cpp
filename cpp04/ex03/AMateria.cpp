@@ -1,7 +1,7 @@
 #include "AMateria.hpp"
 
 
-AMateria::AMateria()
+AMateria::AMateria(): type("default")
 {}
 AMateria::AMateria(std::string const &type)
 {

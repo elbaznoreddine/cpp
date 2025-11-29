@@ -1,7 +1,7 @@
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 #-3g -fsanitize=address
 CPP = c++
 
-SRC = main.cpp  AMateria.cpp   Ice.cpp Cure.cpp  Character.cpp  ICharacter.cpp  IMateriaSource.cpp  MateriaSource.cpp
+SRC = main.cpp AMateria.cpp Ice.cpp Cure.cpp  Character.cpp  MateriaSource.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
