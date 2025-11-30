@@ -9,6 +9,7 @@ class Character : public ICharacter
         AMateria *inventory[4];
         static AMateria* floor[100];
         static int num_floor;
+		void deleteInventory();
     public :
 		Character();
         Character(std::string n);
@@ -19,6 +20,6 @@ class Character : public ICharacter
 		void equip(AMateria* m);
 		void unequip(int idx);
 		void use(int idx, ICharacter& target);
-        static int getNum();
-        static AMateria* getFloor();
+		static void cleanupFloor();
+		static int getNFloor();
 };
