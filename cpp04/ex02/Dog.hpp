@@ -9,7 +9,6 @@ class Dog : public Animal
 		Brain* brain;
 	public :
 		Dog();
-		Dog(std::string t);
 		Dog(Dog &d);
 		Dog &operator=(Dog &d);
 		~Dog();

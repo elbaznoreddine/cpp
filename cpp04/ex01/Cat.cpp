@@ -1,15 +1,8 @@
 #include "Cat.hpp"
 
-Cat::Cat() : Animal()
+Cat::Cat() : Animal("Cat")
 {
 	std::cout << "Cat default constractor called" << std::endl;
-	brain = new Brain();
-}
-
-Cat::Cat(std::string t) : Animal(t)
-{
-	std::cout << "Cat consturtor called" << std::endl;
-	this->type = t;
 	brain = new Brain();
 }
 

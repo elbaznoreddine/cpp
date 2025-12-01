@@ -14,11 +14,10 @@ AMateria::AMateria(const AMateria& am) : type(am.type)
 
 AMateria &AMateria::operator=(const AMateria& am)
 {
-    // if (this != &am)
-    // {
-    //     this->type = am.type;
-    // }
-	(void)am;
+    if (this != &am)
+    {
+        this->type = am.type;
+    }
     return (*this);
 }
 std::string const& AMateria::getType() const

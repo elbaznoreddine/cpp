@@ -1,15 +1,10 @@
 #include "WrongCat.hpp"
 
-WrongCat::WrongCat() : WrongAnimal()
+WrongCat::WrongCat() : WrongAnimal("Wrong Cat")
 {
 	std::cout << "WrongCat default constractor called" << std::endl;
 }
 
-WrongCat::WrongCat(std::string t) : WrongAnimal(t)
-{
-	std::cout << "WrongCat consturtor called" << std::endl;
-	this->type = t;
-}
 
 WrongCat::WrongCat(WrongCat &c) : WrongAnimal (c)
 {

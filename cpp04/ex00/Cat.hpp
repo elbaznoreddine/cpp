@@ -6,9 +6,8 @@ class Cat : public Animal
 {
 	public :
 		Cat();
-		Cat(std::string t);
-		Cat(Cat &c);
-		Cat &operator=(Cat &c);
+		Cat(const Cat &c);
+		Cat &operator=(const Cat &c);
 		~Cat();
 		void  makeSound() const;
 };

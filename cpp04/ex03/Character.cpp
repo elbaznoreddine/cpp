@@ -83,9 +83,14 @@ void Character::equip(AMateria *m)
 {
     if (!m)
         return;
-   for (int j = 0; j < 4; j++)
-   {
+    for (int j = 0; j < 4; j++)
+    {
         if (inventory[j] == m)
+            return;
+    }
+    for (size_t k = 0; k < 100; k++)
+    {
+         if (floor[k] == m)
             return;
     }
     for (int i = 0; i < 4; i++)
@@ -96,6 +101,7 @@ void Character::equip(AMateria *m)
             return;
         }
     }
+    delete m;
 }
 
 void Character::unequip(int idx)

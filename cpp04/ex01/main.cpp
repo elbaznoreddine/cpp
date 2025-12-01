@@ -9,10 +9,10 @@ int main()
 
     for (int i = 0; i < array_size / 2; ++i)
 	{
-        animals[i] = new Dog("Dog");
+        animals[i] = new Dog();
     }
     for (int i = array_size / 2; i < array_size; ++i) {
-        animals[i] = new Cat("Cat");
+        animals[i] = new Cat();
     }
 	
     for (int i = 0; i < array_size; ++i) {

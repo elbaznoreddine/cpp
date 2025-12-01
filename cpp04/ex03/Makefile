@@ -1,4 +1,4 @@
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
 CPP = c++
 
 SRC = main.cpp AMateria.cpp Ice.cpp Cure.cpp  Character.cpp  MateriaSource.cpp
