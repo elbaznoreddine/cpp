@@ -6,14 +6,14 @@ Dog::Dog() : Animal("Dog")
 	brain = new Brain();
 }
 
-Dog::Dog(Dog &d) : Animal (d)
+Dog::Dog(const Dog &d) : Animal (d)
 {
 	std::cout << "Dog Copy Constructor called" << std::endl;
 	brain = NULL;
     *this = d;
 }
 
-Dog &Dog::operator=(Dog &d)
+Dog &Dog::operator=(const Dog &d)
 {
 	if (this != &d)
 	{
@@ -29,9 +29,14 @@ void Dog::makeSound() const
 	std::cout << "Dog sound" << std::endl;
 }
 
-Brain* Dog::getBrain() const
+std::string Dog::getIdea(int id)
 {
-    return this->brain;
+    return this->brain->getIdea(id);
+}
+
+void Dog::setIdea(int id, std::string idea)
+{
+	this->brain->setIdea(id, idea);
 }
 
 Dog::~Dog()

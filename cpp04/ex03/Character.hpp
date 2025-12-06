@@ -21,5 +21,4 @@ class Character : public ICharacter
 		void unequip(int idx);
 		void use(int idx, ICharacter& target);
 		static void cleanupFloor();
-		static int getNFloor();
 };

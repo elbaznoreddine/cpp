@@ -9,9 +9,10 @@ class Dog : public Animal
 		Brain* brain;
 	public :
 		Dog();
-		Dog(Dog &d);
-		Dog &operator=(Dog &d);
+		Dog(const Dog &d);
+		Dog &operator=(const Dog &d);
 		~Dog();
 		void  makeSound() const;
-		Brain* getBrain() const;
+		std::string getIdea(int id);
+		void setIdea(int id, std::string idea);
 };

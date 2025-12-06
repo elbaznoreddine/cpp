@@ -9,9 +9,10 @@ class Cat : public Animal
 		Brain *brain;
 	public :
 		Cat();
-		Cat(Cat &c);
-		Cat &operator=(Cat &c);
+		Cat(const Cat &c);
+		Cat &operator=(const Cat &c);
 		~Cat();
 		void  makeSound() const;
-		Brain* getBrain() const;
+		std::string getIdea(int id);
+		void setIdea(int id, std::string idea);
 };

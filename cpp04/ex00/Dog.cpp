@@ -6,11 +6,11 @@ Dog::Dog() : Animal("Dog")
 }
 
 
-Dog::Dog(Dog &d) : Animal (d)
+Dog::Dog(const Dog &d) : Animal (d)
 {
 }
 
-Dog &Dog::operator=(Dog &d)
+Dog &Dog::operator=(const Dog &d)
 {
 	if (this != &d)
 	{

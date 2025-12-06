@@ -75,5 +75,6 @@ MateriaSource::~MateriaSource()
     {
         if (materias[i])
             delete materias[i];
+        materias[i] = NULL;
     }
 }

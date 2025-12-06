@@ -20,18 +20,19 @@ int main()
         animals[i]->makeSound();
     }
 
-    for (int i = 0; i < array_size; ++i) {
-        delete animals[i];
-    }
-
+    
     Cat c;
+    c.setIdea(0, "eat");
+    std::cout << c.getIdea(0)<< std::endl;
+
+
     Cat c1(c);
     c = c1;
     Cat c10 = c;
     Cat c2(c1);
     c.makeSound();
     c1.makeSound();
-
+    
     Dog d;
     Dog d1(d);
     d = d1;
@@ -39,5 +40,10 @@ int main()
     Dog d2(d1);
     d.makeSound();
     d1.makeSound();
+
+
+    for (int i = 0; i < array_size; ++i) {
+        delete animals[i];
+    }
     return 0;
 }

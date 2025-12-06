@@ -11,12 +11,12 @@ WrongAnimal::WrongAnimal(std::string t)
 	this->type = t;
 }
 
-WrongAnimal::WrongAnimal(WrongAnimal &a)
+WrongAnimal::WrongAnimal(const WrongAnimal &a)
 {
 	*this = a;
 }
 
-WrongAnimal &WrongAnimal::operator=(WrongAnimal &a)
+WrongAnimal &WrongAnimal::operator=(const WrongAnimal &a)
 {
 	if (this != &a)
 	{

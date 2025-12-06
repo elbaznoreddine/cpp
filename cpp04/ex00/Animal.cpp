@@ -12,12 +12,12 @@ Animal::Animal(std::string t)
 	this->type = t;
 }
 
-Animal::Animal(Animal &a)
+Animal::Animal(const Animal &a)
 {
 	*this = a;
 }
 
-Animal &Animal::operator=(Animal &a)
+Animal &Animal::operator=(const Animal &a)
 {
 	if (this != &a)
 	{

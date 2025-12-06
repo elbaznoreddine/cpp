@@ -11,11 +11,11 @@ WrongCat::WrongCat(std::string t) : WrongAnimal(t)
 	this->type = t;
 }
 
-WrongCat::WrongCat(WrongCat &a) : WrongAnimal (a)
+WrongCat::WrongCat(const WrongCat &a) : WrongAnimal (a)
 {
 }
 
-WrongCat &WrongCat::operator=(WrongCat &a)
+WrongCat &WrongCat::operator=(const WrongCat &a)
 {
 	if (this != &a)
 	{

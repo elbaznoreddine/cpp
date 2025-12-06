@@ -6,11 +6,11 @@ WrongCat::WrongCat() : WrongAnimal("Wrong Cat")
 }
 
 
-WrongCat::WrongCat(WrongCat &c) : WrongAnimal (c)
+WrongCat::WrongCat(const WrongCat &c) : WrongAnimal (c)
 {
 }
 
-WrongCat &WrongCat::operator=(WrongCat &c)
+WrongCat &WrongCat::operator=(const WrongCat &c)
 {
 	if (this != &c)
 	{

@@ -1,11 +1,11 @@
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 CPP = c++
 
 SRC = main.cpp AMateria.cpp Ice.cpp Cure.cpp  Character.cpp  MateriaSource.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-NAME = animal
+NAME = materia
 
 all : $(NAME)
 

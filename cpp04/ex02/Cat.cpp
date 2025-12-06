@@ -7,14 +7,14 @@ Cat::Cat() : Animal("Cat")
 }
 
 
-Cat::Cat(Cat &c) : Animal (c)
+Cat::Cat(const Cat &c) : Animal (c)
 {
 	std::cout << "Cat Copy Constructor called" <<std::endl;
 	brain = NULL;
 	*this = c;
 }
 
-Cat &Cat::operator=(Cat &c)
+Cat &Cat::operator=(const Cat &c)
 {
 	if (this != &c)
 	{
@@ -30,8 +30,13 @@ void Cat::makeSound() const
 	std::cout << "Cat sound" << std::endl;
 }
 
-Brain* Cat::getBrain() const {
-    return this->brain;
+std::string Cat::getIdea(int id)
+{
+    return this->brain->getIdea(id);
+}
+void Cat::setIdea(int id, std::string idea)
+{
+	this->brain->setIdea(id, idea);
 }
 
 Cat::~Cat()

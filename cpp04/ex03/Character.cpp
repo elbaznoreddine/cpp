@@ -31,21 +31,21 @@ void Character::cleanupFloor()
 }
 Character::Character() : name("Default")
 {
-    for (int i = 0; i < 4; i++)
+    for (size_t i = 0; i < 4; i++)
         this->inventory[i] = NULL;
 }
 
 Character::Character(std::string n) : name(n)
 {
-    for (int i = 0; i < 4; i++)
+    for (size_t i = 0; i < 4; i++)
         this->inventory[i] = NULL;
 }
 
 Character::Character(const Character &c) : name(c.name)
 {
-	 for (int j = 0; j < 4; j++)
+	 for (size_t j = 0; j < 4; j++)
         this->inventory[j] = NULL;
-    for(int i = 0; i < 4; i++)
+    for(size_t i = 0; i < 4; i++)
     {
         if (c.inventory[i])
             this->inventory[i] = c.inventory[i]->clone();
@@ -83,7 +83,7 @@ void Character::equip(AMateria *m)
 {
     if (!m)
         return;
-    for (int j = 0; j < 4; j++)
+    for (size_t j = 0; j < 4; j++)
     {
         if (inventory[j] == m)
             return;
@@ -93,7 +93,7 @@ void Character::equip(AMateria *m)
          if (floor[k] == m)
             return;
     }
-    for (int i = 0; i < 4; i++)
+    for (size_t i = 0; i < 4; i++)
 	{
         if (!inventory[i])
 		{
@@ -108,6 +108,8 @@ void Character::unequip(int idx)
 {
    if (idx >= 0 && idx < 4 && inventory[idx])
    {
+        if (num_floor == 100)
+            cleanupFloor();
         if (num_floor < 100)
         {
             floor[num_floor++] = inventory[idx];
@@ -124,7 +126,3 @@ void Character::use(int idx, ICharacter& target)
     }
 }
 
-int Character::getNFloor()
-{
-    return num_floor;
-}

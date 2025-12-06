@@ -6,11 +6,9 @@ Cat::Cat() : Animal("Cat")
 }
 
 
-Cat::Cat(Cat &c) : Animal (c)
-{
-}
+Cat::Cat(const Cat &c) : Animal (c) {}
 
-Cat &Cat::operator=(Cat &c)
+Cat &Cat::operator=(const Cat &c)
 {
 	if (this != &c)
 	{

@@ -1,16 +1,16 @@
 #pragma once
 #include <iostream>
 
-#define NUM_IDEAS 100
 
-class Brain {
+class Brain
+{
 	private:
-		std::string ideas[NUM_IDEAS];
+		std::string ideas[100];
 	public:
 		Brain();
 		~Brain();
 		Brain(const Brain& other);
 		Brain& operator=(const Brain& other);
-		const std::string& getIdea(int index) const;
-		void setIdea(int index, const std::string& idea);
+		std::string getIdea(int index);
+		void setIdea(int index, std::string idea);
 };

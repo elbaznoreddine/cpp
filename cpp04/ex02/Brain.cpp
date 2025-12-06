@@ -1,21 +1,23 @@
 #include "Brain.hpp"
 
-Brain::Brain() {
+Brain::Brain()
+{
     std::cout << "Brain Default Constructor called" << std::endl;
-    for (int i = 0; i < NUM_IDEAS; ++i) {
-        this->ideas[i] = std::string("Initial thought ");
+    for (int i = 0; i < 100; ++i)
+    {
+        this->ideas[i] = std::string("Initial idea");
     }
 }
-const std::string& Brain::getIdea(int index) const
+std::string Brain::getIdea(int index)
 {
-    if (index >= 0 && index < NUM_IDEAS)
+    if (index >= 0 && index < 100)
         return this->ideas[index];
     return this->ideas[0]; 
 }
 
-void Brain::setIdea(int index, const std::string& idea)
+void Brain::setIdea(int index, std::string idea)
 {
-    if (index >= 0 && index < NUM_IDEAS)
+    if (index >= 0 && index < 100)
         this->ideas[index] = idea;
 }
 
@@ -27,7 +29,8 @@ Brain::~Brain()
 Brain::Brain(const Brain& other)
 {
     std::cout << "Brain Copy Constructor called" << std::endl;
-    for (int i = 0; i < NUM_IDEAS; ++i) {
+    for (int i = 0; i < 100; ++i)
+    {
         this->ideas[i] = other.ideas[i];
     }
 }
@@ -35,8 +38,10 @@ Brain::Brain(const Brain& other)
 Brain& Brain::operator=(const Brain& other)
 {
     std::cout << "Brain Assignment Operator called" << std::endl;
-    if (this != &other) {
-        for (int i = 0; i < NUM_IDEAS; ++i) {
+    if (this != &other)
+    {
+        for (int i = 0; i < 100; ++i)
+        {
             this->ideas[i] = other.ideas[i];
         }
     }
