@@ -1,0 +1,32 @@
+#pragma once
+
+#include <iostream>
+
+class Bureaucrat
+{
+    private :
+        const std::string name;
+        int grade;
+    public :
+        Bureaucrat();
+        Bureaucrat(const std::string n, int g);
+        Bureaucrat(const Bureaucrat& b);
+        Bureaucrat& operator=(const Bureaucrat& b);
+        ~Bureaucrat();
+        const std::string getName() const ;
+        int getGrade() const;
+        class GradeTooHighException : std::exception
+        {
+            public:
+                virtual const char  *what(void) const throw();
+        };
+        class GradeTooLowException : std::exception
+        {
+            public:
+                virtual const char  *what(void) const throw();
+        };
+        void makeGrade(int g);
+        void incGrade();
+        void decGrade();
+};
+std::ostream &operator<<(std::ostream& OUT, const Bureaucrat& b);
