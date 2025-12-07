@@ -69,7 +69,18 @@ void Bureaucrat::decGrade()
    makeGrade(grade + 1);
     
 }
-
+void Bureaucrat::signForm(Form& f)
+{
+	try
+	{
+		f.beSigned(*this);
+		std::cout << *this << " signed " << f << std::endl;
+	}
+	catch(std::exception& e)
+	{
+		std::cerr << *this << " couldn’t sign " << f << " because " << e.what() << std::endl;
+	}
+}
 Bureaucrat::~Bureaucrat()
 {
     std::cout << "Bureaucrat destructor called" << std::endl;

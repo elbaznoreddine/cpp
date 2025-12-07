@@ -4,8 +4,14 @@ int main()
 {
     try
     {
-        Bureaucrat b = Bureaucrat("noreddine", -1);
+        Bureaucrat b = Bureaucrat("noreddine", 101);
+
+		Form f = Form("avatar", 10, 1);
+		std::cout << f << std::endl;
         std::cout << b << std::endl;
+
+		b.signForm(f);
+
     }
     catch(std::exception& e)
     {
