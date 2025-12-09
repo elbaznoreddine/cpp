@@ -1,22 +1,80 @@
 #include "Bureaucrat.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 int main()
 {
+    std::cout << "\n\033[36m----------- Shrubbery Tests -----------\n\033[0m" << std::endl;
+
     try
     {
-        Bureaucrat b = Bureaucrat("noreddine", 101);
+        Bureaucrat              Alfred( "Alfred", 10 );
+        ShrubberyCreationForm   Plant( "Garden" );
+        ShrubberyCreationForm   copy( Plant );
 
-		Form f = Form("avatar", 10, 1);
-		std::cout << f << std::endl;
-        std::cout << b << std::endl;
+        std::cout << std::endl;
+        std::cout << copy << std::endl;
 
-		b.signForm(f);
+        Alfred.signForm( copy );
+        Alfred.executeForm( copy );
 
     }
-    catch(std::exception& e)
+    catch( Bureaucrat::GradeTooHighException& e)
     {
-        std::cerr << e.what() << std::endl;
-        return (1);
+        std::cout << e.what() << std::endl;
+    }
+    catch( Bureaucrat::GradeTooLowException& e)
+    {
+        std::cout << e.what() << std::endl;
+    }
+
+    std::cout << "\n\033[36m----------- Robotomy Tests -----------\n\033[0m" << std::endl;
+    
+    try
+    {
+        Bureaucrat          Doc( "Doc", 40 );
+        RobotomyRequestForm Robot( "Alfred" );
+        RobotomyRequestForm copy( Robot );
+
+        std::cout << std::endl;
+        std::cout << copy << std::endl;
+		srand(time(NULL));
+        Doc.signForm( copy );
+        Doc.executeForm( copy );
+    
+    }
+    catch( Bureaucrat::GradeTooHighException& e )
+    {
+        std::cout << e.what() << std::endl;
+    }
+    catch( Bureaucrat::GradeTooLowException& e )
+    {
+        std::cout << e.what() << std::endl;
+    }
+
+    std::cout << "\n\033[36m----------- Presidential Tests -----------\n\033[0m" << std::endl;
+
+    try
+    {
+        Bureaucrat              President( "President", 5 );
+        PresidentialPardonForm  Fool( "The Fool" );
+        PresidentialPardonForm  copy( Fool );
+
+        std::cout << std::endl;
+        std::cout << copy << std::endl;
+
+        President.signForm( copy );
+        President.executeForm( copy );
+    
+    }
+     catch( Bureaucrat::GradeTooHighException& e )
+    {
+        std::cout << e.what() << std::endl;
+    }
+    catch( Bureaucrat::GradeTooLowException& e )
+    {
+        std::cout << e.what() << std::endl;
     }
     return (0);
 }
