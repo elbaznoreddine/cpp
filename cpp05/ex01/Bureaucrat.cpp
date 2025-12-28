@@ -18,6 +18,7 @@ void Bureaucrat::makeGrade(int g)
         throw Bureaucrat::GradeTooHighException();
     this->grade = g;
 }
+
 Bureaucrat::Bureaucrat(const Bureaucrat& b): name(b.name)
 {
     std::cout << "Bureaucrat copy constructor called" << std::endl;
@@ -78,7 +79,7 @@ void Bureaucrat::signForm(Form& f)
 	}
 	catch(std::exception& e)
 	{
-		std::cerr << *this << " couldn’t sign " << f << " because " << e.what() << std::endl;
+		std::cout << *this << " couldn’t sign " << f << " because " << e.what() << std::endl;
 	}
 }
 Bureaucrat::~Bureaucrat()

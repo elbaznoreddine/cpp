@@ -51,6 +51,7 @@ AForm* Intern::error(const std::string target, const std::string name)
 
 AForm* Intern::makeForm(const std::string name, const std::string target)
 {
+
     AForm* (Intern::*ptr[])(const std::string, const std::string) =
 	{
         &Intern::error, 

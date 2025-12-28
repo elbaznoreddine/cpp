@@ -40,8 +40,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 	std::ofstream ofile(name_file.c_str());
 	if (!ofile.is_open())
     {
-        std::cerr << "Could not open file " << name_file << std::endl;
-        return;
+		throw std::ios_base::failure("Could not open file");
     }
 	ofile <<
 			"              v .   ._, |_  .,\n"

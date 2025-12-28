@@ -4,13 +4,17 @@ int main()
 {
     try
     {
-        Bureaucrat b = Bureaucrat("noreddine", -1);
-        std::cout << b << std::endl;
+        Bureaucrat b = Bureaucrat();
+        for (size_t i = 0; i < 151; i++)
+        {
+            std::cout << b << std::endl;
+            b.incGrade();
+        }
     }
-    catch(std::exception& e)
+    catch(std::exception &e)
     {
-        std::cerr << e.what() << std::endl;
-        return (1);
+
+        std::cout << e.what() << std::endl;
     }
     return (0);
 }

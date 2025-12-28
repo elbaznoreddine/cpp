@@ -14,3 +14,4 @@ class RobotomyRequestForm : public AForm
 		~RobotomyRequestForm();
 		void execute(Bureaucrat const & executor) const;
 };
+

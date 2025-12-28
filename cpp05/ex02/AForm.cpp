@@ -1,11 +1,13 @@
 #include "AForm.hpp"
 
-AForm::AForm() : _name("default"), _target("Default"), _is_sign(false), _gradeToSign(150), _gradeToExec(150)
+AForm::AForm() :
+ _name("default"), _target("Default"), _is_sign(false), _gradeToSign(150), _gradeToExec(150)
 {
 	std::cout << "AForm default constructor called" << std::endl;
 }
 
-AForm::AForm(std::string name, int gradeToSign, int gradeToExec, std::string target) : _name(name), _target(target), _gradeToSign(gradeToSign), _gradeToExec(gradeToExec)
+AForm::AForm(std::string name, int gradeToSign, int gradeToExec, std::string target) : 
+_name(name), _target(target), _gradeToSign(gradeToSign), _gradeToExec(gradeToExec)
 {
 	std::cout << "AForm Constructor called" << std::endl;
 	_is_sign = false;
@@ -14,13 +16,14 @@ AForm::AForm(std::string name, int gradeToSign, int gradeToExec, std::string tar
     if (_gradeToSign < 1)
         throw ( GradeTooHighException() );
     
-    if (gradeToExec > 150)
+    if (_gradeToExec > 150)
         throw ( GradeTooLowException() );
-    if (gradeToExec < 1)
+    if (_gradeToExec < 1)
         throw ( GradeTooHighException() );
 }
 
-AForm::AForm(const AForm &f) : _name(f._name), _target(f._target), _gradeToSign(f._gradeToSign), _gradeToExec(f._gradeToExec)
+AForm::AForm(const AForm &f) :
+ _name(f._name), _target(f._target), _gradeToSign(f._gradeToSign), _gradeToExec(f._gradeToExec)
 {
 	std::cout << "AForm copy constructor called" << std::endl;
 	*this = f; 
@@ -92,6 +95,6 @@ std::ostream& operator<<(std::ostream& OUT, const AForm& f)
 {
 	OUT << f.getName() << ", require grade to sign = " << f.getGradeToSign()
 		<< ", require grade to execute = " << f.getGradeToExec()
-		<< ", signed = " << f.getSigned();
+		<< ", signed = " << f.getSigned() << " : target : " << f.getTarget();
 	return (OUT);
 }

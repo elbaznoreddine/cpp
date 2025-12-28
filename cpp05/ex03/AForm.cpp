@@ -14,9 +14,9 @@ AForm::AForm(std::string name, int gradeToSign, int gradeToExec, std::string tar
     if (_gradeToSign < 1)
         throw ( GradeTooHighException() );
     
-    if (gradeToExec > 150)
+    if (_gradeToExec > 150)
         throw ( GradeTooLowException() );
-    if (gradeToExec < 1)
+    if (_gradeToExec < 1)
         throw ( GradeTooHighException() );
 }
 

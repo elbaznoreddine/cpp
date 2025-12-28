@@ -5,13 +5,24 @@ Form::Form() : _name("default"), _is_sign(false), _gradeToSign(150), _gradeToExe
 	std::cout << "Form default constructor called" << std::endl;
 }
 
-Form::Form(std::string name, int gradeToSign, int gradeToExec) : _name(name), _gradeToSign(gradeToSign), _gradeToExec(gradeToExec)
+Form::Form(std::string name, int gradeToSign, int gradeToExec) : 
+_name(name), _gradeToSign(gradeToSign), _gradeToExec(gradeToExec)
 {
-	_is_sign = false;
 	std::cout << "Form Constructor called" << std::endl;
+	_is_sign = false;
+	if (_gradeToSign > 150)
+        throw ( GradeTooLowException() );
+    if (_gradeToSign < 1)
+        throw ( GradeTooHighException() );
+    
+    if (_gradeToExec > 150)
+        throw ( GradeTooLowException() );
+    if (_gradeToExec < 1)
+        throw ( GradeTooHighException() );
 }
 
-Form::Form(const Form &f) : _name(f._name), _gradeToSign(f._gradeToSign), _gradeToExec(f._gradeToExec)
+Form::Form(const Form &f) : 
+_name(f._name), _gradeToSign(f._gradeToSign), _gradeToExec(f._gradeToExec)
 {
 	std::cout << "Form copy constructor called" << std::endl;
 	*this = f; 
