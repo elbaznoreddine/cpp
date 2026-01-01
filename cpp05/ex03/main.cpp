@@ -82,10 +82,7 @@ int main()
             Alfred.executeForm(*form3);
             delete (form3);
         }
-        AForm* form4 = intern.makeForm("invalid Form", "Target");
-        if (!form4)
-            std::cout << "Invalid form" << std::endl;
-        
+        intern.makeForm("invalid Form", "Target");
     }
     catch(std::exception& e)
     {

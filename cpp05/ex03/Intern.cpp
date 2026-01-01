@@ -45,8 +45,7 @@ AForm* Intern::shrubberyForm(const std::string target, const std::string name)
 AForm* Intern::error(const std::string target, const std::string name)
 {
 	(void)target;
-	std::cout << "Form's name : " << name << " invalid"<< std::endl;
-	return (NULL);
+	throw std::invalid_argument("Form's name : '" + name + "' invalid");
 }
 
 AForm* Intern::makeForm(const std::string name, const std::string target)
