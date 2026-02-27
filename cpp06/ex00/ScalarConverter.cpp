@@ -52,7 +52,7 @@ void valid_char(char c)
 }
 bool str_char(std::string str)
 {
-    if (str.length() != 1 || !isalpha(str[0]))
+    if (str.length() != 1 || !isprint(str[0]) || isdigit(str[0]))
         return false;
 
     char c = str[0];
@@ -76,7 +76,7 @@ bool str_int(std::string str)
             return false;
     }
 
-    int i = atoi(str.c_str());
+    long i = atol(str.c_str());
 
     valid_char(i);
 
@@ -92,7 +92,7 @@ bool str_int(std::string str)
 bool str_float(std::string str)
 {
     char* end;
-    float f = std::strtof(str.c_str(), &end);
+    float f = std::strtod(str.c_str(), &end);
 
     if ((*end != 'f' && *end != 'F') || *(end + 1) != '\0')
         return false;
@@ -130,11 +130,6 @@ bool str_double(std::string str)
     return true;
 }
 
-void str_impossible(std::string str)
-{
-    std::cout << "invalide format : " << str << std::endl;
-    return;
-}
 void ScalarConverter::convert(std::string str)
 {
     if (str_speciale(str))
@@ -147,6 +142,6 @@ void ScalarConverter::convert(std::string str)
         return;
     if (str_double(str))
         return;
-    str_impossible(str);
+    std::cout << "invalide format : " << str << std::endl;
     return;
 }
