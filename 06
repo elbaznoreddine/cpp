@@ -1,0 +1,83 @@
+//////////////static_cast//////////////////////
+
+The "Logic" Cast. It performs conversions between types with a known relationship at compile-time.
+
+    Low-Level Behavior: It may change the binary value of the pointer. In multiple inheritance, if the Base class is at an offset, static_cast adds or subtracts bytes to point to the correct "sub-object."
+
+    Safety: No runtime overhead. It assumes you know what you are doing.
+
+Example: Converting Numeric Types and Downcasting
+C++
+
+// Primitive conversion
+double d = 3.14;
+int i = static_cast<int>(d); // Rounds toward zero
+
+// Downcasting (Related types)
+Base* b = new Derived();
+Derived* d_ptr = static_cast<Derived*>(b); // Fast, no check.
+
+//////////////////reinterpret_cast///////////////////////////
+
+The "Bitwise" Cast. It treats the expression as if it were a different type without changing the bit pattern.
+
+    Low-Level Behavior: Purely a compiler directive. It results in no CPU instructions. It maps the existing bit pattern of address A to type T.
+
+    Key Constraint: It cannot remove const (use const_cast for that).
+
+    Danger: Violating "Strict Aliasing" rules (accessing an object as a completely unrelated type) is Undefined Behavior.
+
+Example: Pointer to Integer (Serialization)
+C++
+
+long address_val = reinterpret_cast<long>(ptr); 
+// Useful for sending a memory address over a network or storing in a database
+void* raw_ptr = reinterpret_cast<void*>(0xDEADBEEF);
+
+///////////////////////////////dynamic_cast///////////////////////
+
+The "RTTI" Cast. The only cast that performs a runtime check.
+
+    Low-Level Behavior: It accesses the vptr (virtual pointer) of the object, which points to the vtable. Inside the vtable (or alongside it) is the type_info structure. dynamic_cast compares the target type with the actual type stored there.
+
+    Requirement: The Base class must be polymorphic (must have at least one virtual function).
+
+    Cost: Significant. It involves a runtime function call (like __dynamic_cast in GCC).
+
+Example: Safe Identification
+C++
+
+// Pointer version
+if (A* a = dynamic_cast<A*>(base_ptr)) {
+    // Logic for A
+}
+
+// Reference version (throws std::bad_cast on failure)
+try {
+    A& a_ref = dynamic_cast<A&>(*base_ptr);
+} catch (const std::bad_cast& e) {
+    // Not an A
+}
+
+////////////const_cast/////////////////
+
+The "Modifier" Cast. The only cast that can add or remove const or volatile qualifiers.
+
+    Low-Level Behavior: Like reinterpret_cast, it doesn't change bits. It just changes how the compiler permits you to interact with that memory.
+
+    Warning: Modifying a variable that was originally declared as const using const_cast is Undefined Behavior.
+
+Summary Table for Technical Mastery
+Feature	static_cast	reinterpret_cast	dynamic_cast
+Primary Use	Converting related types	Raw bit reinterpretation	Safe downcasting
+When it happens	Compile-time	Compile-time	Run-time
+Pointer Offset	Yes (Calculated)	No (Direct)	Yes (Calculated)
+Failure Check	None	None	Returns NULL/Throws
+Requirement	Defined relationship	None	Polymorphic Base
+What you must know "Very Well":
+
+    Memory Alignment: Casts don't fix alignment. reinterpret_cast to a type with stricter alignment can cause CPU traps on some architectures.
+
+    Object Slicing: Never static_cast an object by value from Derived to Base unless you intend to lose all derived data.
+
+    The Virtual Destructor: If you delete an object through a Base*, and the destructor isn't virtual, none of the casts in the world will save you from a memory leak/UB
