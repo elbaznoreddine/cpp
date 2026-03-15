@@ -1,12 +1,13 @@
+#pragma once
 #include <iostream>
 
 template <typename T>
-void iter(T ad, T size)
+void iter(T* array, const int length, void (*func)(const T&))
 {
-    if (!ad)
-        return ;
-    for (size_t i = 0; i < size; i++)
+    if (!array)
+        return;
+    for (int i = 0; i < length; i++)
     {
-        std::cout << f(ad[i]) << std::endl;
+        func(array[i]);
     }
 }

@@ -1,12 +1,18 @@
 #include "iter.hpp"
 
-char f(char c)
+template<typename T> void	print(const T &data)
 {
-    return std::toupper(c);
+	std::cout << data << std::endl;
 }
+
 int main()
 {
-    char *ar = "ok";
-    int size = 3;
-    iter("ar",);
+    std::string ar[] = {"hello", "this", "is", "CPP", "07", "Module"};
+    char a[] = "ksjdf";
+    std::cout << sizeof(a) << std::endl;
+
+    int iter = sizeof(ar) / sizeof(ar[0]);
+
+    ::iter(ar, iter, print);
+    ::iter(a, sizeof(a) - 1, print);
 }
