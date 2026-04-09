@@ -2,7 +2,7 @@ CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 CC = c++
 SRC = main.cpp
 OBJ=$(SRC:.cpp=.o)
-NAME = span
+NAME = mutantStack
 
 all : $(NAME)
 $(NAME) : $(OBJ)
