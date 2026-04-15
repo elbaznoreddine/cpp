@@ -4,10 +4,19 @@
 #include <list>
 
 
-template <class T>
+template <typename T>
 class MutantStack : public std::stack<T>
 {
     public :
+        MutantStack(){}
+		MutantStack(const MutantStack &m): std::stack<T>(m){}
+		MutantStack &operator=(const MutantStack &m)
+        {
+            if (this != &m)
+                std::stack<T>::operator=(m);
+            return (*this);
+        }
+        ~MutantStack(){}
         typedef typename std::stack<T>::container_type::iterator iterator;
         iterator begin()
         {
