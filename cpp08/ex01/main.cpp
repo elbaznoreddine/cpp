@@ -12,7 +12,7 @@ int main()
         vec.push_back(17);
         vec.push_back(9);
         // vec.push_back(11);
-        sp.addNumber(vec.begin(), vec.end());
+        sp.addNumbers(vec.begin(), vec.end());
         std::cout << sp.shortestSpan() << std::endl;
         std::cout << sp.longestSpan() << std::endl;
     }
