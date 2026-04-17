@@ -5,7 +5,12 @@ std::vector<std::string> get_params(std::string data)
     std::vector<std::string> tokens;
     std::stringstream ss(data);
     std::string token;
-    
+    int pipe_count;
+    for (size_t i = 0; i < data.size(); i++)
+    {
+        if (data[i] == '|')
+            pipe_count++;
+    }
     while (getline(ss, token, '|'))
     {
         size_t first = token.find_first_not_of(" \t\n");
@@ -14,6 +19,8 @@ std::vector<std::string> get_params(std::string data)
             token = token.substr(first, last - first + 1);
         tokens.push_back(token);
     }
+    if (pipe_count > 1)
+        tokens.push_back("");
     return tokens;
 }
 void parse_file(std::string file)
