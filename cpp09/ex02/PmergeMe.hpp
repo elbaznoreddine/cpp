@@ -12,11 +12,11 @@ class PmergeMe
 {
 private:
         std::vector<int> sequence;
-        std::deque<int>  secondSequence;
+        std::deque<int>  deque_seq;
         std::vector<int> mergeInsertVec(std::vector<int> data);
-        int  floorLog2(int x);
+        std::deque<int> mergeInsertDeq(std::deque<int> data);
         std::vector<int> buildT(int maxNeeded);
-        void binaryInsertVec(std::vector<int>& chain, int value, int rightBound);
+        std::deque<int> buildTD(int maxNeeded);
     public:
         PmergeMe();
         PmergeMe(const PmergeMe& p);
@@ -26,5 +26,5 @@ private:
         void parse(std::string arg);
         void sort();
         void showBefore();
-        void showAfter();
+        void showAfter(long usecVec);
 };

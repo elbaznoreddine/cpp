@@ -10,6 +10,8 @@ int main(int ac, char **av)
     try
     {
         PmergeMe p;
+        struct timeval startVec, endVec;
+        gettimeofday(&startVec, NULL);
         for (long i = 1; i <= ac -1; i++)
         {
             std::string arg = av[i];
@@ -17,6 +19,12 @@ int main(int ac, char **av)
         }
         p.showBefore();
         p.sort();
+        gettimeofday(&endVec, NULL);
+        long usecVec = (endVec.tv_sec  - startVec.tv_sec)  * 1000000L
+                    + (endVec.tv_usec - startVec.tv_usec);
+                    
+        p.showAfter(usecVec);
+    
     }
     catch(const std::exception& e)
     {
