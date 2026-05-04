@@ -13,6 +13,10 @@ class PmergeMe
 private:
         std::vector<int> sequence;
         std::deque<int>  secondSequence;
+        std::vector<int> mergeInsertVec(std::vector<int> data);
+        int  floorLog2(int x);
+        std::vector<int> buildT(int maxNeeded);
+        void binaryInsertVec(std::vector<int>& chain, int value, int rightBound);
     public:
         PmergeMe();
         PmergeMe(const PmergeMe& p);
