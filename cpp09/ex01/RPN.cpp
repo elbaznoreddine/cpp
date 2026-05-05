@@ -13,6 +13,12 @@ RPN& RPN::operator=(const RPN& r)
 
 RPN::~RPN(){}
 
+int RPN::check_res(long res)
+{
+    if (res > std::numeric_limits<int>::max() || res < std::numeric_limits<int>::min())
+        throw std::runtime_error("Error: the result overflow");
+    return (static_cast<int>(res));
+}
 int  RPN::pase_input(std::string arg)
 {
     std::stringstream ss(arg);
@@ -23,21 +29,33 @@ int  RPN::pase_input(std::string arg)
         {
             if (s.size() < 2)
                 throw std::runtime_error("Error: calculation can't be done");
-            int first = s.top();
+            long first = s.top();
             s.pop();
-            int last = s.top();
+            long last = s.top();
             s.pop();
             if (token == "-")
-                s.push(last - first);
+            {
+                long res = last - first;
+                s.push(check_res(res));
+            }
             else if (token == "+")
-                s.push(last + first);
+            {
+                long res = last + first;
+                s.push(check_res(res));
+
+            }
             else if (token == "*")
-                s.push(last * first);
+            {
+                long res = last * first;
+                s.push(check_res(res));
+
+            }
             else if (token == "/")
             {
                 if (first == 0)
                     throw std::runtime_error("Error: the denominator can't be 0");
-                s.push(last / first);
+                long res = last / first;
+                s.push(check_res(res));
             }
         }
         else if (token.size() > 1)
@@ -48,6 +66,10 @@ int  RPN::pase_input(std::string arg)
         {
             int ss  = std::atoi(token.c_str());
             s.push(ss);
+        }
+        else 
+        {
+            throw std::runtime_error("Error: invalid token");
         }
         
     }

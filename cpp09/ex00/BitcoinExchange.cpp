@@ -2,7 +2,7 @@
 
 BitcoinExchange::BitcoinExchange() {}
 BitcoinExchange::~BitcoinExchange() {}
-BitcoinExchange::BitcoinExchange(const BitcoinExchange& b): _db(b._db){}
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& b): _db(b._db) {}
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange& b)
 {
     if (this != &b)
