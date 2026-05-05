@@ -4,8 +4,10 @@ PmergeMe::PmergeMe() {}
 
 PmergeMe::PmergeMe(const PmergeMe& p) : sequence(p.sequence), deque_seq(p.deque_seq) {}
 
-PmergeMe& PmergeMe::operator=(const PmergeMe& p) {
-    if (this != &p) {
+PmergeMe& PmergeMe::operator=(const PmergeMe& p) 
+{
+    if (this != &p)
+    {
         sequence = p.sequence;
         deque_seq = p.deque_seq;
     }
@@ -14,7 +16,8 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& p) {
 
 PmergeMe::~PmergeMe() {}
 
-void PmergeMe::parse(std::string arg) {
+void PmergeMe::parse(std::string arg)
+{
     for (size_t i = 0; i < arg.size(); i++) 
     {
         if (!isdigit(arg[i]))
@@ -22,7 +25,7 @@ void PmergeMe::parse(std::string arg) {
     }
     
     long nbr = std::atol(arg.c_str());
-    if (nbr < 0)
+    if (nbr < 0 || nbr > std::numeric_limits<int>::max() || nbr < std::numeric_limits<int>::min())
         throw std::runtime_error("Error: number is not positive.");
     sequence.push_back(static_cast<int>(nbr));
     deque_seq.push_back(static_cast<int>(nbr));
@@ -37,7 +40,7 @@ void PmergeMe::showBefore()
     std::cout << std::endl;
 }
 
-void PmergeMe::showAfter(long usecVec)
+void PmergeMe::showAfter()
 {
     std::cout << "After:  ";
     for(size_t i = 0; i < sequence.size(); i++)
@@ -45,10 +48,6 @@ void PmergeMe::showAfter(long usecVec)
         std::cout << sequence[i] << " ";
     }
     std::cout << std::endl;
-
-     std::cout << "Time to process a range of " << sequence.size()
-                << " elements with std::vector : "
-                << usecVec << " us" << std::endl;
 }
 std::vector<int> PmergeMe::buildT(int maxNeeded)
 {
@@ -322,6 +321,40 @@ std::deque<int> PmergeMe::mergeInsertDeq(std::deque<int> data)
 }
 void PmergeMe::sort()
 {
+    struct timeval startVec, endVec;
+
+
+    gettimeofday(&startVec, NULL);
+
     sequence = mergeInsertVec(sequence);
-    deque_seq = mergeInsertDeq(deque_seq); 
+
+    gettimeofday(&endVec, NULL);
+
+
+    double usecVec = (endVec.tv_sec - startVec.tv_sec) * 1000000.0
+                    + (endVec.tv_usec - startVec.tv_usec);
+
+
+    struct timeval startDeq, endDeq;
+
+
+    gettimeofday(&startDeq, NULL);
+
+    deque_seq = mergeInsertDeq(deque_seq);
+
+    gettimeofday(&endDeq, NULL);
+
+
+    double usecDeq = (endDeq.tv_sec - startDeq.tv_sec) * 1000000.0
+                    + (endDeq.tv_usec - startDeq.tv_usec);
+
+    showAfter();
+
+    std::cout << "Time to process a range of " << sequence.size()
+              << " elements with std::vector : "
+              << std::fixed << std::setprecision(5) << usecVec << " us" << std::endl;
+
+    std::cout << "Time to process a range of " << deque_seq.size()
+              << " elements with std::deque  : "
+              << std::fixed << std::setprecision(5) << usecDeq << " us" << std::endl;
 }

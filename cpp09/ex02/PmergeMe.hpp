@@ -7,7 +7,8 @@
 #include <sys/time.h>
 #include <utility>
 #include <algorithm>
-
+#include <iomanip>
+#include <limits>
 class PmergeMe
 {
 private:
@@ -26,5 +27,5 @@ private:
         void parse(std::string arg);
         void sort();
         void showBefore();
-        void showAfter(long usecVec);
+        void showAfter();
 };
