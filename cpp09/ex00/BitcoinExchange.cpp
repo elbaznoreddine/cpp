@@ -39,9 +39,14 @@ bool BitcoinExchange::isValidValue(std::string str, double& value)
 
 void BitcoinExchange::loadDatabase(std::string filename)
 {
-    std::string last = filename.substr(filename.size() - 4, filename.size());
-    if (last != ".csv")
-        throw std::runtime_error("Error: bad extention "  + last);
+    if (filename.size() >= 4)
+    {
+        std::string last = filename.substr(filename.size() - 4, filename.size());
+        if (last != ".csv")
+            throw std::runtime_error("Error: bad extention "  + last);
+    }
+    else
+        throw std::runtime_error("Error: to short file name");
     std::ifstream file(filename.c_str());
     if (!file.is_open())
         throw std::runtime_error("Error: could not open database.");
@@ -60,16 +65,17 @@ void BitcoinExchange::loadDatabase(std::string filename)
 
 void BitcoinExchange::processInput(std::string filename)
 {
-    std::string last = filename.substr(filename.size() - 4, filename.size());
-    if (last != ".txt")
-        throw std::runtime_error("Error: bad extention "  + last);
+    if (filename.size() >= 4)
+    {
+        std::string last = filename.substr(filename.size() - 4, filename.size());
+        if (last != ".txt")
+            throw std::runtime_error("Error: bad extention "  + last);
+    }
+    else
+        throw std::runtime_error("Error: to short file name");
     std::ifstream file(filename.c_str());
     if (!file.is_open())
-    {
-        std::cout << "Error: could not open file." << std::endl;
-        return;
-    }
-
+        throw std::runtime_error("Error: could not open file.");
     std::string line;
     std::getline(file, line);
     while (std::getline(file, line))

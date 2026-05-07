@@ -23,7 +23,6 @@ void PmergeMe::parse(std::string arg)
         if (!isdigit(arg[i]))
            throw std::runtime_error("Error: non-digit character detected.");
     }
-    
     long nbr = std::atol(arg.c_str());
     if (nbr < 0 || nbr > std::numeric_limits<int>::max() || nbr < std::numeric_limits<int>::min())
         throw std::runtime_error("Error: number is not positive.");
@@ -103,14 +102,11 @@ std::deque<int> PmergeMe::buildTD(int maxNeeded)
 
 std::vector<int> PmergeMe::mergeInsertVec(std::vector<int> data)
 {
-
     if (data.size() <= 1)
         return data;
-
     std::vector<std::pair<int, int> > pairs;
     int leftover = -1;
     bool hasLeftover = false;
-
     for (size_t i = 0; i + 1 < data.size(); i += 2)
     {
         if (data[i] > data[i + 1])
@@ -121,7 +117,6 @@ std::vector<int> PmergeMe::mergeInsertVec(std::vector<int> data)
             pairs.push_back(std::make_pair(data[i + 1], data[i]));
         }
     }
-    
     if (data.size() % 2 != 0)
     {
         leftover = data.back();
@@ -132,12 +127,9 @@ std::vector<int> PmergeMe::mergeInsertVec(std::vector<int> data)
     {
         larger.push_back(pairs[i].first);
     }
-
     larger = mergeInsertVec(larger);
-
     std::vector<bool> used(pairs.size(), false);
     std::vector<std::pair<int, int> > renamed;
-
     for (size_t i = 0; i < larger.size(); i++)
     {
         for (size_t j = 0; j < pairs.size(); j++)
@@ -150,7 +142,6 @@ std::vector<int> PmergeMe::mergeInsertVec(std::vector<int> data)
             }
         }
     }
-
     std::vector<int> chain;
     if (!renamed.empty())
     {
@@ -173,18 +164,14 @@ std::vector<int> PmergeMe::mergeInsertVec(std::vector<int> data)
     if (totalB > 1)
     { 
         std::vector<int> t = buildT(totalB);
-
         for (size_t k = 2; k < t.size(); k++)
         {
-            
             int batchEnd = t[k];
             if (t[k] >= totalB)
             {
                 batchEnd = totalB;
             }
-
             int batchStart = t[k - 1] + 1;
-
             for (int idx = batchEnd; idx >= batchStart; idx--)
             {
                 int value = bElems[idx - 1];
@@ -201,7 +188,6 @@ std::vector<int> PmergeMe::mergeInsertVec(std::vector<int> data)
                         }
                     }
                 }
-                
                 std::vector<int>::iterator insertPos = std::lower_bound(chain.begin(), bound, value);
                 chain.insert(insertPos, value);
             }
@@ -210,17 +196,13 @@ std::vector<int> PmergeMe::mergeInsertVec(std::vector<int> data)
     return chain;
 }
 
-
 std::deque<int> PmergeMe::mergeInsertDeq(std::deque<int> data)
 {
-
     if (data.size() <= 1)
         return data;
-
     std::deque<std::pair<int, int> > pairs;
     int leftover = -1;
     bool hasLeftover = false;
-
     for (size_t i = 0; i + 1 < data.size(); i += 2)
     {
         if (data[i] > data[i + 1])
@@ -231,7 +213,6 @@ std::deque<int> PmergeMe::mergeInsertDeq(std::deque<int> data)
             pairs.push_back(std::make_pair(data[i + 1], data[i]));
         }
     }
-    
     if (data.size() % 2 != 0)
     {
         leftover = data.back();
@@ -242,12 +223,9 @@ std::deque<int> PmergeMe::mergeInsertDeq(std::deque<int> data)
     {
         larger.push_back(pairs[i].first);
     }
-
     larger = mergeInsertDeq(larger);
-
     std::deque<bool> used(pairs.size(), false);
     std::deque<std::pair<int, int> > renamed;
-
     for (size_t i = 0; i < larger.size(); i++)
     {
         for (size_t j = 0; j < pairs.size(); j++)
@@ -260,7 +238,6 @@ std::deque<int> PmergeMe::mergeInsertDeq(std::deque<int> data)
             }
         }
     }
-
     std::deque<int> chain;
     if (!renamed.empty())
     {
@@ -286,15 +263,12 @@ std::deque<int> PmergeMe::mergeInsertDeq(std::deque<int> data)
 
         for (size_t k = 2; k < t.size(); k++)
         {
-            
             int batchEnd = t[k];
             if (t[k] >= totalB)
             {
                 batchEnd = totalB;
             }
-
             int batchStart = t[k - 1] + 1;
-
             for (int idx = batchEnd; idx >= batchStart; idx--)
             {
                 int value = bElems[idx - 1];
@@ -311,7 +285,6 @@ std::deque<int> PmergeMe::mergeInsertDeq(std::deque<int> data)
                         }
                     }
                 }
-                
                 std::deque<int>::iterator insertPos = std::lower_bound(chain.begin(), bound, value);
                 chain.insert(insertPos, value);
             }
@@ -322,34 +295,19 @@ std::deque<int> PmergeMe::mergeInsertDeq(std::deque<int> data)
 void PmergeMe::sort()
 {
     struct timeval startVec, endVec;
-
-
     gettimeofday(&startVec, NULL);
-
     sequence = mergeInsertVec(sequence);
-
     gettimeofday(&endVec, NULL);
-
-
     double usecVec = (endVec.tv_sec - startVec.tv_sec) * 1000000.0
                     + (endVec.tv_usec - startVec.tv_usec);
 
-
     struct timeval startDeq, endDeq;
-
-
     gettimeofday(&startDeq, NULL);
-
     deque_seq = mergeInsertDeq(deque_seq);
-
     gettimeofday(&endDeq, NULL);
-
-
     double usecDeq = (endDeq.tv_sec - startDeq.tv_sec) * 1000000.0
                     + (endDeq.tv_usec - startDeq.tv_usec);
-
     showAfter();
-
     std::cout << "Time to process a range of " << sequence.size()
               << " elements with std::vector : "
               << std::fixed << std::setprecision(5) << usecVec << " us" << std::endl;
