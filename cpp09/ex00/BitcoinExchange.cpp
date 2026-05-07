@@ -39,6 +39,9 @@ bool BitcoinExchange::isValidValue(std::string str, double& value)
 
 void BitcoinExchange::loadDatabase(std::string filename)
 {
+    std::string last = filename.substr(filename.size() - 4, filename.size());
+    if (last != ".csv")
+        throw std::runtime_error("Error: bad extention "  + last);
     std::ifstream file(filename.c_str());
     if (!file.is_open())
         throw std::runtime_error("Error: could not open database.");
@@ -57,6 +60,9 @@ void BitcoinExchange::loadDatabase(std::string filename)
 
 void BitcoinExchange::processInput(std::string filename)
 {
+    std::string last = filename.substr(filename.size() - 4, filename.size());
+    if (last != ".txt")
+        throw std::runtime_error("Error: bad extention "  + last);
     std::ifstream file(filename.c_str());
     if (!file.is_open())
     {
